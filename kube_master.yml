@@ -1,5 +1,5 @@
 ---
-- hosts: kube_node
+- hosts: kube_master
   become: yes
   roles:
     - kubernetes_prep
