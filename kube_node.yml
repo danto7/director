@@ -1,0 +1,12 @@
+---
+- hosts: kube_nodes
+  become: yes
+  tasks:
+  - name: deactivate swap
+    block:
+      - shell: swapoff -a
+      - lineinfile:
+          path: /etc/fstab
+          regexp: '^(?!#).*swap'
+          state: absent
+  - name: 
