@@ -2,6 +2,7 @@
   apt:
     upgrade: full
     update_cache: yes
+    force_apt_get: yes
 
 - name: check if swap is on
   shell: swapon -s --noheadings --show=NAME | wc -l

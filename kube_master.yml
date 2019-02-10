@@ -3,3 +3,4 @@
   become: yes
   roles:
     - kubernetes_prep
+    - kube_master

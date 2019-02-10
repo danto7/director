@@ -1,0 +1,2 @@
+#!/bin/bash
+vagrant ssh master -c "sudo kubeadm token create --skip-headers --ttl 5m" | tee token.txt

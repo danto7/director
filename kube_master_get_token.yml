@@ -1,0 +1,11 @@
+---
+- hosts: kube_master
+  become: yes
+  tasks:
+    - shell: kubeadm token create --skip-headers --ttl 5m
+      register: token
+    - local_action:
+      copy:
+        content: "{{token.stdout}}"
+        dest: token.txt
+        unsafe_writes: yes

@@ -4,6 +4,11 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "debian/stretch64"
 
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+    v.cpus = 2
+  end
+
   config.vm.define "master", primary: true do |master|
     master.vm.hostname = "master"
     master.vm.network "private_network", ip: "192.168.77.21"
