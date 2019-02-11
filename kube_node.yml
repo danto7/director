@@ -1,5 +1,9 @@
 ---
 - hosts: kube_node
   become: yes
+  vars:
+    master_host: "127.0.0.1"
+    token: "{{ lookup('file', 'join_command.txt') | regex_replace('^(kubeadm join )\\S+( --token.*)$', '\\1JACKTHE42\\2') | regex_replace('JACKTHE42', master_host)}}"
   roles:
     - kubernetes_prep
+    - kube_node

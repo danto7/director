@@ -1,15 +1,15 @@
 - name: pull kubernetes images
   shell: kubeadm config images pull
-- name: create kubeadm config
-  template:
-    src: kubeadm_config.yml
-    dest: kubeadm_config.yml
+#- name: create kubeadm config
+#  template:
+#    src: kubeadm_config.yml
+#    dest: kubeadm_config.yml
 - stat:
     path: /etc/kubernetes/admin.conf
   register: admin_conf
 - block:
     - name: do the kubeinit
-      shell: kubeadm init --config kubeadm_config.yml
+      shell: "kubeadm init --pod-network-cidr '{{pod_network_cidr}}' --apiserver-cert-extra-sans '{{additional_sans}}' --apiserver-advertise-address '{{advertise_address}}'"
       register: init_err
     - name: create .kube dir
       file: path=~/.kube state=directory
