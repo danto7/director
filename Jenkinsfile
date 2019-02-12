@@ -1,6 +1,8 @@
 pipeline {
-  docker { image 'ansible/ansible:latest' }
-
+  agent{
+    docker { image 'ansible/ansible:latest' }
+  }
+  
   stages {
     stage('Apply Master') {
       steps {
