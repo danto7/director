@@ -1,7 +1,7 @@
 version: '3'
 services:
   proxy:
-    image: linuxserver/letsencrypt
+    build: ./proxy
     environment:
       - URL=${DOMAIN}
       - SUBDOMAINS=${SUBDOMAINS}
@@ -10,6 +10,7 @@ services:
       - PUID=1000
       - TZ=Europe/Berlin
       - STAGING=true
+      - ONLY_SUBDOMAINS=true
     ports:
       - "80:80"
       - "443:443"
@@ -18,3 +19,5 @@ services:
     cap_add:
       - NET_ADMIN
     restart: always
+  test:
+    image: nginx
