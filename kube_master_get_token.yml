@@ -1,7 +1,0 @@
----
-- hosts: kube_master
-  become: yes
-  tasks:
-    - shell: kubeadm token create --skip-headers --ttl 5m --print-join-command
-      register: token
-    - local_action: copy content={{token.stdout}} dest=join_command.txt unsafe_writes=yes

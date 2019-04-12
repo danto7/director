@@ -1,2 +1,0 @@
-- name: Join node to cluster
-  shell: timeout 30s kubeadm join {{master_host}} --token {{token}}

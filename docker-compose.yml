@@ -1,0 +1,20 @@
+version: '3'
+services:
+  proxy:
+    image: linuxserver/letsencrypt
+    environment:
+      - URL=${DOMAIN}
+      - SUBDOMAINS=${SUBDOMAINS}
+      - VALIDATION=http
+      - PGID=1000
+      - PUID=1000
+      - TZ=Europe/Berlin
+      - STAGING=true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/director/proxy:/config
+    cap_add:
+      - NET_ADMIN
+    restart: always
